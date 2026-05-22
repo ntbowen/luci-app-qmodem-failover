@@ -1,0 +1,93 @@
+#!/usr/bin/ucode
+// rpcd ucode handler for luci.qmodem-failover
+
+let uci = require("uci");
+let fs = require("fs");
+let popen = require("popen");
+let time = require("time");
+
+// Read status from file
+function read_status() {
+    let f = fs.open("/var/run/qmodem-failover/status", "r");
+    if (!f) return [ "unknown", 0 ];
+    let line = f.read("line") ?? "";
+    f.close();
+    let m = match(line, /^([a-z]+):(\d+)/);
+    if (m) return [ m[1], int(m[2]) ?? 0 ];
+    return [ "unknown", 0 ];
+}
+
+// Get IP address for interface
+function get_ip(iface) {
+    let p = popen(`ip addr show ${iface} 2>/dev/null | awk '/inet / {print $2; exit}'`, "r");
+    if (!p) return "";
+    let ip = p.read("line") ?? "";
+    p.close();
+    let m = match(ip, /^([^\/]+)/);
+    return m ? replace(m[1], /\s+/, "", "g") : "";
+}
+
+// Check if service is running
+function service_running() {
+    let f = fs.open("/var/run/qmodem-failover/checker.pid", "r");
+    if (!f) return false;
+    let pid = trim(f.read("line") ?? "");
+    f.close();
+    if (!pid) return false;
+    return system(`kill -0 ${pid} 2>/dev/null`) == 0;
+}
+
+// Get status
+function get_status() {
+    let ctx = uci.cursor();
+    let wan_iface = ctx.get("qmodem_failover", "general", "wan_iface") ?? "eth0";
+    let lte_iface = ctx.get("qmodem_failover", "general", "lte_iface") ?? "usb0";
+    let [ mode, ts ] = read_status();
+    return {
+        mode: mode,
+        switch_time: ts,
+        wan_ip: get_ip(wan_iface),
+        lte_ip: get_ip(lte_iface),
+        wan_iface: wan_iface,
+        lte_iface: lte_iface,
+        service_running: service_running(),
+        server_time: time.localtime()[0]
+    };
+}
+
+// Get logs
+function get_logs() {
+    let p = popen("logread 2>/dev/null | grep qmodem-failover | tail -30", "r");
+    let logs = [];
+    if (p) {
+        let line;
+        while ((line = p.read("line")) != null) {
+            push(logs, trim(line));
+        }
+        p.close();
+    }
+    return { logs: logs };
+}
+
+// Switch mode
+function switch_mode(target) {
+    let ret = system(`/usr/lib/qmodem-failover/switcher.sh switch_to_${target} >/dev/null 2>&1`);
+    let status = read_status();
+    let mode = status[0];
+    let ts = status[1];
+    return { success: ret == 0, target: target, mode: mode, switch_time: ts };
+}
+
+// Test notification
+function test_notify() {
+    let ret = system("/usr/lib/qmodem-failover/notify.sh test 'Test notification' >/dev/null 2>&1");
+    return { success: ret == 0 };
+}
+
+// RPC exports
+return {
+    get_status: function() { return get_status(); },
+    get_logs: function() { return get_logs(); },
+    switch_mode: function(req) { return switch_mode(req.target ?? "lte"); },
+    test_notify: function() { return test_notify(); }
+};

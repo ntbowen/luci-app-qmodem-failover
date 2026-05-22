@@ -1,0 +1,185 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+msgid "QMODEM Failover"
+msgstr "QMODEM 故障切换"
+
+msgid "Auto-switches to QMODEM LTE when wired WAN fails, switches back on recovery."
+msgstr "有线 WAN 故障时自动切换到 QMODEM LTE，恢复后自动切回。"
+
+msgid "Current Status"
+msgstr "当前状态"
+
+msgid "Current Mode:"
+msgstr "当前模式："
+
+msgid "Wired WAN"
+msgstr "有线 WAN"
+
+msgid "LTE Failover"
+msgstr "LTE 故障切换"
+
+msgid "Unknown"
+msgstr "未知"
+
+msgid "WAN Interface"
+msgstr "WAN 接口"
+
+msgid "LTE Interface"
+msgstr "LTE 接口"
+
+msgid "WAN IP"
+msgstr "WAN IP"
+
+msgid "LTE IP"
+msgstr "LTE IP"
+
+msgid "WAN Status"
+msgstr "WAN 状态"
+
+msgid "Connected"
+msgstr "已连接"
+
+msgid "Disconnected"
+msgstr "已断开"
+
+msgid "Service"
+msgstr "服务"
+
+msgid "Running"
+msgstr "运行中"
+
+msgid "Stopped"
+msgstr "已停止"
+
+msgid "Last Switch"
+msgstr "上次切换"
+
+msgid "Manual Switch"
+msgstr "手动切换"
+
+msgid "Switch to WAN"
+msgstr "切换到 WAN"
+
+msgid "Switch to LTE"
+msgstr "切换到 LTE"
+
+msgid "Test Notification"
+msgstr "测试通知"
+
+msgid "Send Test Notification"
+msgstr "发送测试通知"
+
+msgid "Send Test"
+msgstr "发送测试"
+
+msgid "Recent Logs"
+msgstr "最近日志"
+
+msgid "No logs available"
+msgstr "无日志可用"
+
+msgid "Failed to load logs"
+msgstr "加载日志失败"
+
+msgid "Loading..."
+msgstr "加载中..."
+
+msgid "Confirm Switch"
+msgstr "确认切换"
+
+msgid "Switch to "
+msgstr "切换到"
+
+msgid "?"
+msgstr "？"
+
+msgid "Confirm"
+msgstr "确认"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Switched to "
+msgstr "已切换到"
+
+msgid "Switched"
+msgstr "已切换"
+
+msgid "Switch failed"
+msgstr "切换失败"
+
+msgid "Test notification sent"
+msgstr "测试通知已发送"
+
+msgid "Failed to send test notification"
+msgstr "发送测试通知失败"
+
+msgid "OK"
+msgstr "成功"
+
+msgid "Failed"
+msgstr "失败"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Configuration"
+msgstr "配置"
+
+msgid "QMODEM Failover Configuration"
+msgstr "QMODEM 故障切换配置"
+
+msgid "Configure network interfaces for WAN failover. When the primary WAN fails, traffic will automatically switch to the LTE interface."
+msgstr "配置 WAN 故障切换的网络接口。当主 WAN 故障时，流量将自动切换到 LTE 接口。"
+
+msgid "General Settings"
+msgstr "通用设置"
+
+msgid "Primary wired WAN interface"
+msgstr "主有线 WAN 接口"
+
+msgid "Secondary LTE/4G interface for failover"
+msgstr "备用 LTE/4G 故障切换接口"
+
+msgid "Enable Failover"
+msgstr "启用故障切换"
+
+msgid "Automatically switch to LTE when WAN fails"
+msgstr "WAN 故障时自动切换到 LTE"
+
+msgid "Check Hosts"
+msgstr "检测主机"
+
+msgid "Ping Targets"
+msgstr "Ping 目标"
+
+msgid "IP addresses or hostnames to ping for connectivity check"
+msgstr "用于连通性检测的 IP 地址或主机名"
+
+msgid "Notifications"
+msgstr "通知"
+
+msgid "Enable Notifications"
+msgstr "启用通知"
+
+msgid "Send notifications when failover occurs"
+msgstr "故障切换发生时发送通知"
+
+msgid "Webhook Type"
+msgstr "Webhook 类型"
+
+msgid "DingTalk"
+msgstr "钉钉"
+
+msgid "WeCom"
+msgstr "企业微信"
+
+msgid "Lark"
+msgstr "飞书"
+
+msgid "Webhook URL"
+msgstr "Webhook 地址"
+
+msgid "-- Select Interface --"
+msgstr "-- 选择接口 --"

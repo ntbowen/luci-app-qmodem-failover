@@ -1,0 +1,17 @@
+{
+	"luci-app-qmodem-failover": {
+		"description": "Access QMODEM Failover configuration",
+		"read": {
+			"uci": ["qmodem_failover"],
+			"ubus": {
+				"luci.qmodem-failover": ["get_status", "get_logs"]
+			}
+		},
+		"write": {
+			"uci": ["qmodem_failover"],
+			"ubus": {
+				"luci.qmodem-failover": ["switch_mode", "test_notify"]
+			}
+		}
+	}
+}
